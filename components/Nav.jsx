@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Nav = () => {
-  const isUserLoggedIn = true;
+  const { data: session } = useSession();
 
   const [providers, setProviders] = useState(null);
   const [toggleDropDown, setToggleDropDown] = useState(false);
@@ -34,7 +34,7 @@ const Nav = () => {
 
       {/* DeskTop */}
       <div className="hidden sm:flex">
-        {isUserLoggedIn ? (
+        { session?.user ? (
           <div className="gap-3 md:gap-5 flex">
             <Link href="/create-prompt" className="black_btn">
               Create Post
@@ -45,7 +45,7 @@ const Nav = () => {
 
             <Link href="/profile">
               <Image
-                src="/assets/images/logo.svg"
+                src={session?.user.image}
                 height={37}
                 width={37}
                 alt="profile"
@@ -61,6 +61,7 @@ const Nav = () => {
                   type="button"
                   key={provider.name}
                   onClick={() => signIn(provider.id)}
+                  className='black_btn'
                 >
                   Sign In
                 </button>
@@ -72,10 +73,10 @@ const Nav = () => {
       {/* Mobile */}
 
       <div className="sm:hidden flex relative">
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className="flex">
             <Image
-              src="/assets/images/logo.svg"
+              src={session?.user.image}
               height={37}
               width={37}
               alt="profile"
@@ -119,6 +120,7 @@ const Nav = () => {
                   type="button"
                   key={provider.name}
                   onClick={() => signIn(provider.id)}
+                  className='black_btn'
                 >
                   Sign In
                 </button>
