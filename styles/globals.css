@@ -4,7 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .main {
   width: 100vw;
   min-height: 100vh;
@@ -71,7 +70,7 @@
 /* Tailwind Styles */
 
 .app {
-  @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto sm:px-16 px-6;
+  @apply relative z-10 flex justify-center items-center flex-col  mx-auto sm:px-16 px-6;
 }
 
 .black_btn {
